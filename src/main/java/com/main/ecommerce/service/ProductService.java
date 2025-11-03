@@ -1,6 +1,6 @@
 package com.main.ecommerce.service;
 
-import com.main.ecommerce.model.Product;
+import com.main.ecommerce.model.products.Product;
 import com.main.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product findById(int id) {
+    public Product findById(long id) {
         return productRepository.findById(id).map(product -> product).orElse(null);
     }
 

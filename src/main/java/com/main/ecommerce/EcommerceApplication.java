@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EcommerceApplication {
 
 	public static void main(String[] args) {
+        System.setProperty("user.timezone", "Asia/Ho_Chi_Minh");
 		SpringApplication.run(EcommerceApplication.class, args);
 	}
 
+
 }
+

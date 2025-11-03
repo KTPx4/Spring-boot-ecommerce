@@ -1,6 +1,7 @@
-package com.main.ecommerce.model;
+package com.main.ecommerce.model.products;
 
 import com.main.ecommerce.dto.ProductDTO;
+import com.main.ecommerce.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,21 +15,26 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "products")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Product extends BaseEntity {
+
     private String name;
     private double price;
     private String description;
     private String sku;
     private String slug;
-    private int brandId;
-    private String desc;
-    private String shortDesc;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private String imageUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id", nullable = true)
+    private Brand brand;
+
+    @ManyToOne(fetch =  FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = true)
+    private Category category;
+
+    private String short_desc;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
+    private String image_url;
 
     public Product(ProductDTO productDTO) {
         this.name = productDTO.getName();
@@ -36,10 +42,9 @@ public class Product {
         this.description = productDTO.getDescription();
         this.sku = productDTO.getSku();
         this.slug = productDTO.getSlug();
-        this.brandId = productDTO.getBrandId();
-        this.desc = productDTO.getDesc();
-        this.shortDesc = productDTO.getShortDesc();
-        this.imageUrl = productDTO.getImageUrl();
+        this.brand = productDTO.getBrand();
+        this.short_desc = productDTO.getShortDesc();
+        this.image_url = productDTO.getImageUrl();
 
     }
 

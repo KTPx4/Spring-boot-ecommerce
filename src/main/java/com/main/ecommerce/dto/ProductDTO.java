@@ -1,6 +1,7 @@
 package com.main.ecommerce.dto;
 
-import com.main.ecommerce.model.Product;
+import com.main.ecommerce.model.products.Brand;
+import com.main.ecommerce.model.products.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,14 +12,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDTO {
-    private int id;
+    private long id;
     private String name;
     private double price;
     private String description;
     private String sku;
     private String slug;
-    private int brandId;
-    private String desc;
+    private Brand brand;
     private String shortDesc;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -31,11 +31,10 @@ public class ProductDTO {
         this.description = product.getDescription();
         this.sku = product.getSku();
         this.slug = product.getSlug();
-        this.brandId = product.getBrandId();
-        this.desc = product.getDesc();
-        this.shortDesc = product.getShortDesc();
-        this.createdAt = product.getCreatedAt();
-        this.updatedAt = product.getUpdatedAt();
-        this.imageUrl = product.getImageUrl();
+        this.brand = product.getBrand();
+        this.shortDesc = product.getShort_desc();
+        this.createdAt = product.getCreated_at();
+        this.updatedAt = product.getUpdated_at();
+        this.imageUrl = product.getImage_url();
     }
 }

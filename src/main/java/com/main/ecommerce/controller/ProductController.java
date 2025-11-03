@@ -1,18 +1,16 @@
 package com.main.ecommerce.controller;
 
 import com.main.ecommerce.dto.ProductDTO;
-import com.main.ecommerce.model.Product;
+import com.main.ecommerce.model.products.Product;
 import com.main.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api/product")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -32,7 +30,7 @@ public class ProductController {
         List<ProductDTO> productDTOs = new ArrayList<>();
         for (Product product : products) {
             ProductDTO productDTO = new ProductDTO(product);
-
+            productDTOs.add(productDTO);
         }
         return productDTOs;
     }
