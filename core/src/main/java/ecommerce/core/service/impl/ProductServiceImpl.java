@@ -5,11 +5,13 @@ import ecommerce.core.domain.product.ProductCoreResponse;
 import ecommerce.core.infra.ProductClientService;
 import ecommerce.core.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 //@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -28,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductCoreResponse> getAllProducts() {
+        log.info("THIS RUN");
         return productClientService.getAllProduct();
     }
 }

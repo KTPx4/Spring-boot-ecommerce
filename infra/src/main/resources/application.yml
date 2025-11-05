@@ -15,3 +15,14 @@ spring:
     store-type: none
   jackson:
     time-zone: Asia/Ho_Chi_Minh
+
+logging:
+  file:
+    path: logs
+    name: logs/app.log
+  level:
+    ecommerce.infra: INFO
+    root: INFO
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
