@@ -2,7 +2,7 @@ package ecommerce.api.dto;
 
 import java.time.LocalDateTime;
 
-public class ProductResponse {
+public class ProductApiResponse {
     private Long id;
     private Long brand_id;
     private Long category_id;
@@ -18,10 +18,10 @@ public class ProductResponse {
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
-    public ProductResponse() {
+    public ProductApiResponse() {
     }
 
-    public ProductResponse(Long id, Long brand_id, Long category_id, String name, Double price, String description, String sku, String slug, String short_desc, String image_url, LocalDateTime created_at, LocalDateTime updated_at) {
+    public ProductApiResponse(Long id, Long brand_id, Long category_id, String name, Double price, String description, String sku, String slug, String short_desc, String image_url, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;
         this.brand_id = brand_id;
         this.category_id = category_id;

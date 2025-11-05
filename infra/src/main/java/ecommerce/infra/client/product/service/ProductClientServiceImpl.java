@@ -31,13 +31,13 @@ public class ProductClientServiceImpl implements ProductClientService {
     public ProductCoreResponse createProduct(ProductCoreRequest request) {
             log.info("infra - start createProduct");
 
-            if(!brandRepository.existsById(request.getBrand_id()))
-                throw new IllegalArgumentException("Brand does not exist");
-            if(!categoryRepository.existsById(request.getCategory_id()))
-                throw new IllegalArgumentException("Category does not exist");
+//            if(!brandRepository.existsById(request.getBrandId()))
+//                throw new IllegalArgumentException("Brand does not exist");
+//            if(!categoryRepository.existsById(request.getCategoryId()))
+//                throw new IllegalArgumentException("Category does not exist");
 
-            Brand brand = brandRepository.getReferenceById(request.getBrand_id());
-            Category category = categoryRepository.getReferenceById(request.getCategory_id());
+            Brand brand = brandRepository.getReferenceById(request.getBrandId());
+            Category category = categoryRepository.getReferenceById(request.getCategoryId());
             Product product = ProductInfraMapper.toEntity(request, brand, category);
             Product productSave  = productRepository.save(product);
 
@@ -46,12 +46,10 @@ public class ProductClientServiceImpl implements ProductClientService {
     }
 
     @Override
-    public List<ProductCoreRequest> getAllProduct() {
+    public List<ProductCoreResponse> getAllProduct() {
         log.info("infra - start getAllProduct");
         List<Product> products = productRepository.findAll();
         List<ProductCoreResponse> responses = products.stream().map(ProductInfraMapper ::toProductCoreResponse).toList();
-
-
-        return List.of();
+        return responses;
     }
 }

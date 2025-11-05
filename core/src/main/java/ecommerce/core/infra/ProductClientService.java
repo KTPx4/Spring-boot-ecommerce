@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface ProductClientService {
     ProductCoreResponse createProduct(ProductCoreRequest request);
-    List<ProductCoreRequest> getAllProduct();
+    List<ProductCoreResponse> getAllProduct();
 }

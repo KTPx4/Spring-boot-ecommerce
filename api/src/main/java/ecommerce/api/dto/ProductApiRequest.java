@@ -1,6 +1,6 @@
 package ecommerce.api.dto;
 
-public class ProductRequest {
+public class ProductApiRequest {
     private String name;
     private Double price;
     private String description;
@@ -11,7 +11,7 @@ public class ProductRequest {
     private String short_desc;
     private String image_url;
 
-    public ProductRequest(String name, Double price, String description, String sku, String slug, Long brand_id, Long category_id, String short_desc, String image_url) {
+    public ProductApiRequest(String name, Double price, String description, String sku, String slug, Long brand_id, Long category_id, String short_desc, String image_url) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -23,7 +23,7 @@ public class ProductRequest {
         this.image_url = image_url;
     }
 
-    public ProductRequest() {
+    public ProductApiRequest() {
     }
 
     public String getName() {

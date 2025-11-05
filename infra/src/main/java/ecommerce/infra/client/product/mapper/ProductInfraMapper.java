@@ -8,13 +8,7 @@ import ecommerce.infra.client.product.entity.Product;
 
 public class ProductInfraMapper {
     public static Product toEntity(ProductCoreRequest productCoreRequest, Brand brand, Category category) {
-//        private String name;
-//        private Double price;
-//        private String description;
-//        private String sku;
-//        private String slug;
-//        private String short_desc;
-//        private String image_url;
+
 
         Product product = new Product();
         product.setName(productCoreRequest.getName());
@@ -22,8 +16,8 @@ public class ProductInfraMapper {
         product.setPrice(productCoreRequest.getPrice());
         product.setSku(productCoreRequest.getSku());
         product.setSlug(productCoreRequest.getSlug());
-        product.setImage_url(productCoreRequest.getImage_url());
-        product.setShort_desc(productCoreRequest.getShort_desc());
+        product.setImage_url(productCoreRequest.getImageUrl());
+        product.setShort_desc(productCoreRequest.getShortDesc());
 
         product.setCategory(category);
         product.setBrand(brand);
