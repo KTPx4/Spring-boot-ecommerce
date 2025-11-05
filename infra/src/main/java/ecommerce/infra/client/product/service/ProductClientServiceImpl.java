@@ -31,10 +31,10 @@ public class ProductClientServiceImpl implements ProductClientService {
     public ProductCoreResponse createProduct(ProductCoreRequest request) {
             log.info("infra - start createProduct");
 
-//            if(!brandRepository.existsById(request.getBrandId()))
-//                throw new IllegalArgumentException("Brand does not exist");
-//            if(!categoryRepository.existsById(request.getCategoryId()))
-//                throw new IllegalArgumentException("Category does not exist");
+            if(!brandRepository.existsById(request.getBrandId()))
+                throw new IllegalArgumentException("Brand does not exist");
+            if(!categoryRepository.existsById(request.getCategoryId()))
+                throw new IllegalArgumentException("Category does not exist");
 
             Brand brand = brandRepository.getReferenceById(request.getBrandId());
             Category category = categoryRepository.getReferenceById(request.getCategoryId());

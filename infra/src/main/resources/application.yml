@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:postgresql://52.77.101.54:5432/ecommerce_db
-    username: px4
+    username: ecommerce
     password: px4K3@2003
     driver-class-name: org.postgresql.Driver
   jpa:
@@ -16,13 +16,4 @@ spring:
   jackson:
     time-zone: Asia/Ho_Chi_Minh
 
-logging:
-  file:
-    path: logs
-    name: logs/app.log
-  level:
-    ecommerce.infra: INFO
-    root: INFO
-  pattern:
-    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
