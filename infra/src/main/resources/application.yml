@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:postgresql://52.77.101.54:5432/ecommerce_db
-    username: px4
+    username: ecommerce
     password: px4K3@2003
     driver-class-name: org.postgresql.Driver
   jpa:
@@ -15,3 +15,5 @@ spring:
     store-type: none
   jackson:
     time-zone: Asia/Ho_Chi_Minh
+
+
