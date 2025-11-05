@@ -41,3 +41,12 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// Disable bootJar for root project (only api module needs it)
+bootJar {
+	enabled = false
+}
+
+jar {
+	enabled = true
+}
