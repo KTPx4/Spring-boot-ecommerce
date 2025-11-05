@@ -997,3 +997,9 @@ This generated password is for development use only. Your security configuration
 2025-11-05 21:23:29 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 2025-11-05 21:23:29 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
 2025-11-05 21:23:29 [http-nio-8080-exec-2] INFO  e.i.c.p.s.ProductClientServiceImpl - infra - start createProduct
+2025-11-05 21:25:18 [http-nio-8080-exec-1] INFO  e.i.c.p.s.ProductClientServiceImpl - infra - start createProduct
+2025-11-05 21:25:19 [http-nio-8080-exec-1] INFO  e.i.c.p.s.ProductClientServiceImpl - infra - end createProduct
+2025-11-05 21:25:28 [http-nio-8080-exec-3] INFO  e.api.controller.ProductController - REST request to get all Products
+2025-11-05 21:25:28 [http-nio-8080-exec-3] INFO  e.c.service.impl.ProductServiceImpl - THIS RUN
+2025-11-05 21:25:28 [http-nio-8080-exec-3] INFO  e.i.c.p.s.ProductClientServiceImpl - infra - start getAllProduct
+2025-11-05 21:25:28 [http-nio-8080-exec-3] INFO  e.api.controller.ProductController - REST request to get all Productsjava.util.stream.ReferencePipeline$Head@17e38906
