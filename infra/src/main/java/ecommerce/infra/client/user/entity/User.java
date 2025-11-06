@@ -1,11 +1,13 @@
 package ecommerce.infra.client.user.entity;
 
 import ecommerce.infra.client.entity.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -13,13 +15,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "users")
 public class User extends BaseEntity {
+    
+    @Column(unique = true, nullable = false)
     private String userName;
+    
+    @Column(nullable = false)
     private String passHash;
+    
     private String fullName;
     private String phone;
+    
+    @Column(unique = true)
     private String email;
+    
     private String birthDay;
     private String imgUrl;
     private String gender;
-    private Integer status;
+    
+    @Column(nullable = false)
+    private Integer status = 1;
+    
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<UserRole> userRoles = new HashSet<>();
 }
