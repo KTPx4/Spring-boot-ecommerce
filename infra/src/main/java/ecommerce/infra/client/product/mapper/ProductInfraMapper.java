@@ -34,6 +34,15 @@ public class ProductInfraMapper {
         productCoreResponse.setSlug(product.getSlug());
         productCoreResponse.setImage_url(product.getImage_url());
         productCoreResponse.setShort_desc(product.getShort_desc());
+        productCoreResponse.setBrand_id(product.getBrand().getId());
+        productCoreResponse.setCategory_id(product.getCategory().getId());
         return productCoreResponse;
+    }
+
+    public static Product toUpdateEntity(Long id, ProductCoreRequest request, Brand brand, Category category)
+    {
+        Product product = toEntity(request, brand, category);
+        product.setId(id);
+        return product;
     }
 }

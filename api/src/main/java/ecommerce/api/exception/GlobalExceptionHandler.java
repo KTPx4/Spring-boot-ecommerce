@@ -11,6 +11,16 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, Object>> handleIllegalArgumentException(IllegalArgumentException e) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", e.getMessage());
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.BAD_REQUEST.value());
+        body.put("error", "Bad Request");
+        return ResponseEntity.badRequest().body(body);
+    }
+
     @ExceptionHandler(IllegalAccessError.class)
     public ResponseEntity<Map<String, Object>> handleIllegalAccessException(IllegalAccessError e) {
         Map<String, Object> body = new HashMap<>();

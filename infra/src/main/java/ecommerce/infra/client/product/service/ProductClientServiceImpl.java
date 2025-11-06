@@ -24,17 +24,11 @@ import java.util.List;
 public class ProductClientServiceImpl implements ProductClientService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
-
     private final BrandRepository brandRepository;
 
     @Override
     public ProductCoreResponse createProduct(ProductCoreRequest request) {
             log.info("infra - start createProduct");
-
-            if(!brandRepository.existsById(request.getBrandId()))
-                throw new IllegalArgumentException("Brand does not exist");
-            if(!categoryRepository.existsById(request.getCategoryId()))
-                throw new IllegalArgumentException("Category does not exist");
 
             Brand brand = brandRepository.getReferenceById(request.getBrandId());
             Category category = categoryRepository.getReferenceById(request.getCategoryId());
@@ -52,4 +46,52 @@ public class ProductClientServiceImpl implements ProductClientService {
         List<ProductCoreResponse> responses = products.stream().map(ProductInfraMapper ::toProductCoreResponse).toList();
         return responses;
     }
+
+    @Override
+    public ProductCoreResponse deleteProduct(Long id) {
+        log.info("infra - start deleteProduct");
+
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+
+        productRepository.delete(product);
+
+        log.info("infra - end deleteProduct");
+        return ProductInfraMapper.toProductCoreResponse(product);
+    }
+
+    @Override
+    public ProductCoreResponse updateProduct(Long id, ProductCoreRequest request) {
+        log.info("infra - start updateProduct");
+        
+        // Check product exists
+        productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+
+        Brand brand = brandRepository.getReferenceById(request.getBrandId());
+        Category category = categoryRepository.getReferenceById(request.getCategoryId());
+
+        var updateProduct = ProductInfraMapper.toUpdateEntity(id, request, brand, category);
+
+        return ProductInfraMapper.toProductCoreResponse(productRepository.save(updateProduct));
+    }
+
+    @Override
+    public boolean existsById(Long productId) {
+        log.info("infra - checking if product exists: {}", productId);
+        return productRepository.existsById(productId);
+    }
+
+    @Override
+    public boolean existsBySlug(String slug) {
+        log.info("infra - checking if slug exists: {}", slug);
+        return productRepository.existsBySlug(slug);
+    }
+
+    @Override
+    public boolean existsBySku(String sku) {
+        log.info("infra - checking if SKU exists: {}", sku);
+        return productRepository.existsBySku(sku);
+    }
+
 }

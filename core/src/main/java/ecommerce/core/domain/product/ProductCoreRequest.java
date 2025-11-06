@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class ProductCoreRequest {
+
     private String name;
     private Long brandId;
     private Long categoryId;

@@ -25,8 +25,9 @@ public class ProductController {
     
     @PostMapping
     public ResponseEntity<?> createProduct(@RequestBody ProductApiRequest product) {
-        log.debug("REST request to save Product : {}", product);
+        log.info("REST request to save Product : {}");
         ProductCoreRequest proC = ProductMapper.toProductCoreRequest(product);
+        log.info("Start call productSerivice ");
         ProductCoreResponse res = productService.createProduct(proC);
         return ResponseBuilder.success("Create product success", res);
     }
