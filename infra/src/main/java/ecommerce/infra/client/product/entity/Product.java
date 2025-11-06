@@ -1,6 +1,9 @@
 package ecommerce.infra.client.product.entity;
 
 
+import ecommerce.infra.client.brand.entity.Brand;
+import ecommerce.infra.client.entity.BaseEntity;
+import ecommerce.infra.client.category.entity.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

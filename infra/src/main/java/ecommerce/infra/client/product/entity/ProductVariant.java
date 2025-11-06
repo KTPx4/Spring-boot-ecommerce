@@ -1,5 +1,7 @@
 package ecommerce.infra.client.product.entity;
 
+import ecommerce.infra.client.entity.AttrValue;
+import ecommerce.infra.client.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

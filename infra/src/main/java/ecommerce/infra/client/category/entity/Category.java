@@ -1,4 +1,4 @@
-package ecommerce.infra.client.product.entity;
+package ecommerce.infra.client.category.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

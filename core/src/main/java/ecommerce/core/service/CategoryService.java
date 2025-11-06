@@ -1,13 +1,11 @@
-package ecommerce.core.infra;
+package ecommerce.core.service;
 
 import ecommerce.core.domain.category.CategoryCoreRequest;
 import ecommerce.core.domain.category.CategoryCoreResponse;
 
 import java.util.List;
 
-public interface CategoryClientService {
-    boolean existsById(Long categoryId);
-
+public interface CategoryService {
     CategoryCoreResponse createCategory(CategoryCoreRequest request);
 
     List<CategoryCoreResponse> getAllCategories();
@@ -17,6 +15,4 @@ public interface CategoryClientService {
     CategoryCoreResponse updateCategory(Long id, CategoryCoreRequest request);
 
     CategoryCoreResponse deleteCategory(Long id);
-
-    boolean existsBySlug(String slug);
 }

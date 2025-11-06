@@ -3,20 +3,18 @@ package ecommerce.infra.client.product.service;
 import ecommerce.core.domain.product.ProductCoreRequest;
 import ecommerce.core.domain.product.ProductCoreResponse;
 import ecommerce.core.infra.ProductClientService;
-import ecommerce.infra.client.product.entity.Brand;
-import ecommerce.infra.client.product.entity.Category;
+import ecommerce.infra.client.brand.entity.Brand;
+import ecommerce.infra.client.category.entity.Category;
 import ecommerce.infra.client.product.entity.Product;
 import ecommerce.infra.client.product.mapper.ProductInfraMapper;
-import ecommerce.infra.client.product.repository.BrandRepository;
-import ecommerce.infra.client.product.repository.CategoryRepository;
+import ecommerce.infra.client.brand.repository.BrandRepository;
+import ecommerce.infra.client.category.repository.CategoryRepository;
 import ecommerce.infra.client.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
-
 
 @Slf4j
 @Service
@@ -28,14 +26,14 @@ public class ProductClientServiceImpl implements ProductClientService {
 
     @Override
     public ProductCoreResponse createProduct(ProductCoreRequest request) {
-            log.info("infra - start createProduct");
+        log.info("infra - start createProduct");
 
-            Brand brand = brandRepository.getReferenceById(request.getBrandId());
-            Category category = categoryRepository.getReferenceById(request.getCategoryId());
-            Product product = ProductInfraMapper.toEntity(request, brand, category);
-            Product productSave  = productRepository.save(product);
+        Brand brand = brandRepository.getReferenceById(request.getBrandId());
+        Category category = categoryRepository.getReferenceById(request.getCategoryId());
+        Product product = ProductInfraMapper.toEntity(request, brand, category);
+        Product productSave = productRepository.save(product);
 
-            log.info("infra - end createProduct");
+        log.info("infra - end createProduct");
         return ProductInfraMapper.toProductCoreResponse(productSave);
     }
 
@@ -43,8 +41,16 @@ public class ProductClientServiceImpl implements ProductClientService {
     public List<ProductCoreResponse> getAllProduct() {
         log.info("infra - start getAllProduct");
         List<Product> products = productRepository.findAll();
-        List<ProductCoreResponse> responses = products.stream().map(ProductInfraMapper ::toProductCoreResponse).toList();
+        List<ProductCoreResponse> responses = products.stream().map(ProductInfraMapper::toProductCoreResponse).toList();
         return responses;
+    }
+
+    @Override
+    public ProductCoreResponse getProductById(Long id) {
+        log.info("infra - start getProductById: {}", id);
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+        return ProductInfraMapper.toProductCoreResponse(product);
     }
 
     @Override
@@ -63,7 +69,7 @@ public class ProductClientServiceImpl implements ProductClientService {
     @Override
     public ProductCoreResponse updateProduct(Long id, ProductCoreRequest request) {
         log.info("infra - start updateProduct");
-        
+
         // Check product exists
         productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Product not found"));

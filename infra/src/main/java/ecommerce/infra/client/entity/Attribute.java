@@ -1,5 +1,6 @@
-package ecommerce.infra.client.product.entity;
+package ecommerce.infra.client.entity;
 
+import ecommerce.infra.client.category.entity.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

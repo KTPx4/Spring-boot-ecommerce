@@ -1,4 +1,4 @@
-package ecommerce.infra.client.product.entity;
+package ecommerce.infra.client.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

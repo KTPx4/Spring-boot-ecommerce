@@ -36,27 +36,71 @@ public class ProductServiceImpl implements ProductService {
         return productClientService.getAllProduct();
     }
 
+    @Override
+    public ProductCoreResponse getProductById(Long id) {
+        log.info("Get product by ID at ProductServiceImpl: {}", id);
+        productValidationService.validateProductExists(id);
+        return productClientService.getProductById(id);
+    }
+
+    @Override
+    public ProductCoreResponse updateProduct(Long id, ProductCoreRequest request) {
+        log.info("Update product at ProductServiceImpl: {}", id);
+        validateUpdateRequest(id, request);
+        return productClientService.updateProduct(id, request);
+    }
+
+    @Override
+    public ProductCoreResponse deleteProduct(Long id) {
+        log.info("Delete product at ProductServiceImpl: {}", id);
+        productValidationService.validateProductExists(id);
+        return productClientService.deleteProduct(id);
+    }
+
     private void validateCreateRequest(ProductCoreRequest request) {
         log.info("Start validateCreateRequest");
-        
+
         // Validate input fields
         if (request.getBrandId() == null || request.getBrandId() == 0)
             throw new IllegalArgumentException("Invalid brandId");
-        if(request.getCategoryId() == null || request.getCategoryId() == 0)
+        if (request.getCategoryId() == null || request.getCategoryId() == 0)
             throw new IllegalArgumentException("Invalid categoryId");
-        if(request.getName() == null || request.getName().equals(""))
+        if (request.getName() == null || request.getName().equals(""))
             throw new IllegalArgumentException("Invalid name");
-        if(request.getPrice() == null || request.getPrice() <= 0)
+        if (request.getPrice() == null || request.getPrice() <= 0)
             throw new IllegalArgumentException("Invalid price");
-        
+
         // Validate brand and category exist
         brandValidationService.validateBrandExists(request.getBrandId());
         categoryValidationService.validateCategoryExists(request.getCategoryId());
-        
+
         // Validate slug and SKU uniqueness
         productValidationService.validateSlugNotExists(request.getSlug());
         productValidationService.validateSkuNotExists(request.getSku());
-        
+
         log.info("End validateCreateRequest");
+    }
+
+    private void validateUpdateRequest(Long id, ProductCoreRequest request) {
+        log.info("Start validateUpdateRequest");
+
+        // Validate product exists
+        productValidationService.validateProductExists(id);
+
+        // Validate input fields
+        if (request.getBrandId() == null || request.getBrandId() == 0)
+            throw new IllegalArgumentException("Invalid brandId");
+        if (request.getCategoryId() == null || request.getCategoryId() == 0)
+            throw new IllegalArgumentException("Invalid categoryId");
+        if (request.getName() == null || request.getName().equals(""))
+            throw new IllegalArgumentException("Invalid name");
+        if (request.getPrice() == null || request.getPrice() <= 0)
+            throw new IllegalArgumentException("Invalid price");
+
+        // Validate brand and category exist
+        brandValidationService.validateBrandExists(request.getBrandId());
+        categoryValidationService.validateCategoryExists(request.getCategoryId());
+
+        log.info("End validateUpdateRequest");
     }
 }

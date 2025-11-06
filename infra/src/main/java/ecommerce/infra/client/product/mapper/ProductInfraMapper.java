@@ -2,8 +2,8 @@ package ecommerce.infra.client.product.mapper;
 
 import ecommerce.core.domain.product.ProductCoreRequest;
 import ecommerce.core.domain.product.ProductCoreResponse;
-import ecommerce.infra.client.product.entity.Brand;
-import ecommerce.infra.client.product.entity.Category;
+import ecommerce.infra.client.brand.entity.Brand;
+import ecommerce.infra.client.category.entity.Category;
 import ecommerce.infra.client.product.entity.Product;
 
 public class ProductInfraMapper {
