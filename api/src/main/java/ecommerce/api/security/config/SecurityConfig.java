@@ -5,6 +5,7 @@ import ecommerce.infra.security.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -33,18 +34,23 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        // Public endpoints - No authentication required
                         .requestMatchers(
+                                "/",
                                 "/api/auth/**",
                                 "/api/public/**",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
-                                "/swagger-ui.html"
-                        ).permitAll()
-                        .anyRequest().authenticated()
-                )
+                                "/swagger-ui.html")
+                        .permitAll()
+                        // Public product endpoints - GET only
+                        .requestMatchers(HttpMethod.GET, "/api/v1/product/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/brand/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/category/**").permitAll()
+                        // All other endpoints require authentication
+                        .anyRequest().authenticated())
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

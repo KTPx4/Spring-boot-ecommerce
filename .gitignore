@@ -1,4 +1,4 @@
-HELP.md
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -35,3 +35,19 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Firebase Credentials ###
+**/ecommerce-firebase.json
+*firebase*.json
+
+### Security & Sensitive Files ###
+*.pem
+*.key
+*.p12
+*.jks
+application-prod.properties
+application-prod.yml
+**/application.properties
+**/application.yml
+!**/application-example.properties
+!**/application-example.yml
