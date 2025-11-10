@@ -43,6 +43,7 @@ public class UserRepositoryImpl implements UserRepository {
         return UserPrincipal.builder()
                 .id(user.getId())
                 .username(user.getUserName())
+                .password(user.getPassHash()) // Include password hash
                 .email(user.getEmail())
                 .fullName(user.getFullName())
                 .status(user.getStatus())

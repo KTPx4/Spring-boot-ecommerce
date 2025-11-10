@@ -37,7 +37,7 @@ public class SecurityConfig {
                         // Public endpoints - No authentication required
                         .requestMatchers(
                                 "/",
-                                "/api/auth/**",
+                                "/api/v1/auth/**",
                                 "/api/public/**",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",

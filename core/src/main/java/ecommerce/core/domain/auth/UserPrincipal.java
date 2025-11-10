@@ -14,6 +14,7 @@ import java.util.Set;
 public class UserPrincipal {
     private Long id;
     private String username;
+    private String password; // Password hash from database
     private String email;
     private String fullName;
     private Set<String> roles;

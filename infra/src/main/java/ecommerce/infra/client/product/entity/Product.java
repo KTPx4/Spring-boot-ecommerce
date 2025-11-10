@@ -28,6 +28,7 @@ public class Product extends BaseEntity {
     private String short_desc;
     private String image_url;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id", nullable = true)
     private Brand brand;

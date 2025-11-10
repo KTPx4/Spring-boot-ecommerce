@@ -23,7 +23,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtToken authenticate(AuthenticationRequest request) {
-        // Authenticate user
+        log.info("Infra - Authenticating user {}", request.getUsername() + " pass: " + request.getPassword());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -31,13 +31,28 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 )
         );
 
-        // Load user principal
-        UserPrincipal userPrincipal = userDetailsService.loadUserPrincipalByUsername(request.getUsername());
+        log.info("Infra - start load userPrincipal");
+        UserPrincipal userPrincipal  = userDetailsService.loadUserPrincipalByUsername(request.getUsername());;
+        String accessToken;
+        String refreshToken;
+        try{
+            log.info("Infra - get  userPrincipal", userPrincipal.getUsername());
+            // Generate tokens
+            accessToken = jwtTokenProvider.generateAccessToken(userPrincipal);
+            refreshToken = jwtTokenProvider.generateRefreshToken(userPrincipal);
+        }
+        catch (Exception e) {
+            log.error("Infra - Authentication Failed for user: {}", request.getUsername(), e);
+            log.error("Error details: {}", e.getMessage());
+            log.error("Error class: {}", e.getClass().getName());
+            if (e.getCause() != null) {
+                log.error("Cause: {}", e.getCause().getMessage());
+            }
+            throw new RuntimeException("Authentication failed: " + e.getMessage(), e);
+        }
 
-        // Generate tokens
-        String accessToken = jwtTokenProvider.generateAccessToken(userPrincipal);
-        String refreshToken = jwtTokenProvider.generateRefreshToken(userPrincipal);
 
+        log.info("Infra - return  accessToken");
         return JwtToken.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)

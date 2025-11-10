@@ -43,6 +43,7 @@ public class JwtTokenProviderImpl implements JwtTokenProvider {
     }
 
     private String generateToken(UserPrincipal userPrincipal, Long expiration) {
+        log.info("Start generateToken");
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
 
@@ -51,7 +52,7 @@ public class JwtTokenProviderImpl implements JwtTokenProvider {
         claims.put("email", userPrincipal.getEmail());
         claims.put("fullName", userPrincipal.getFullName());
         claims.put("roles", userPrincipal.getRoles());
-
+        log.info("return generateToken");
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userPrincipal.getUsername())
