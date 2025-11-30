@@ -2,10 +2,10 @@ package ecommerce.infra.security.service;
 
 import ecommerce.core.domain.auth.UserPrincipal;
 import ecommerce.core.infra.repository.UserRepository;
-import ecommerce.infra.client.user.entity.User;
-import ecommerce.infra.client.user.entity.UserRole;
-import ecommerce.infra.client.user.repository.UserJpaRepository;
-import ecommerce.infra.client.user.repository.UserRoleJpaRepository;
+import ecommerce.infra.client.entity.User;
+import ecommerce.infra.client.entity.UserRole;
+import ecommerce.infra.client.repository.UserJpaRepository;
+import ecommerce.infra.client.repository.UserRoleJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -64,17 +64,22 @@ public class AuthenticationController {
     public ResponseEntity<LoginResponse> refreshToken(
             @Parameter(description = "Refresh token", required = true) @RequestBody RefreshTokenRequest request) {
         log.info("Refresh token request");
+        try{
+            JwtToken jwtToken = authenticationService.refreshToken(request.getRefreshToken());
+            LoginResponse response = LoginResponse.builder()
+                    .accessToken(jwtToken.getAccessToken())
+                    .refreshToken(jwtToken.getRefreshToken())
+                    .tokenType(jwtToken.getTokenType())
+                    .expiresIn(jwtToken.getExpiresIn())
+                    .build();
+            return ResponseEntity.ok(response);
+        }
+        catch (Exception e){
 
-        JwtToken jwtToken = authenticationService.refreshToken(request.getRefreshToken());
+        }
+        return ResponseEntity.badRequest().build();
 
-        LoginResponse response = LoginResponse.builder()
-                .accessToken(jwtToken.getAccessToken())
-                .refreshToken(jwtToken.getRefreshToken())
-                .tokenType(jwtToken.getTokenType())
-                .expiresIn(jwtToken.getExpiresIn())
-                .build();
 
-        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/test")

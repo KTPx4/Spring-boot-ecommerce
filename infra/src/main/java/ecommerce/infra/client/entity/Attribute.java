@@ -1,6 +1,5 @@
 package ecommerce.infra.client.entity;
 
-import ecommerce.infra.client.category.entity.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "attributes")
+@Table(name = "attributes", schema = "main")
 public class Attribute {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

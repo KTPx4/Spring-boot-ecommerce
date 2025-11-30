@@ -5,5 +5,5 @@ import ecommerce.core.domain.auth.JwtToken;
 
 public interface AuthenticationService {
     JwtToken authenticate(AuthenticationRequest request);
-    JwtToken refreshToken(String refreshToken);
+    JwtToken refreshToken(String refreshToken) throws Exception;
 }

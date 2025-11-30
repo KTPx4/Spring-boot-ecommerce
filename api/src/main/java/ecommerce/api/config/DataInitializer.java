@@ -1,11 +1,11 @@
 package ecommerce.api.config;
 
-import ecommerce.infra.client.user.entity.Role;
-import ecommerce.infra.client.user.entity.User;
-import ecommerce.infra.client.user.entity.UserRole;
-import ecommerce.infra.client.user.repository.RoleJpaRepository;
-import ecommerce.infra.client.user.repository.UserJpaRepository;
-import ecommerce.infra.client.user.repository.UserRoleJpaRepository;
+import ecommerce.infra.client.entity.Role;
+import ecommerce.infra.client.entity.User;
+import ecommerce.infra.client.entity.UserRole;
+import ecommerce.infra.client.repository.RoleJpaRepository;
+import ecommerce.infra.client.repository.UserJpaRepository;
+import ecommerce.infra.client.repository.UserRoleJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
