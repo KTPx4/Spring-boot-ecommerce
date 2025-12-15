@@ -36,7 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String accessToken;
         String refreshToken;
         try{
-            log.info("Infra - get  userPrincipal", userPrincipal.getUsername());
+            log.info("Infra - get  userPrincipal {}", userPrincipal.getUsername());
             // Generate tokens
             accessToken = jwtTokenProvider.generateAccessToken(userPrincipal);
             refreshToken = jwtTokenProvider.generateRefreshToken(userPrincipal);
@@ -62,7 +62,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public JwtToken refreshToken(String refreshToken) {
+    public JwtToken refreshToken(String refreshToken) throws Exception{
         if (!jwtTokenProvider.validateToken(refreshToken)) {
             throw new RuntimeException("Invalid refresh token");
         }

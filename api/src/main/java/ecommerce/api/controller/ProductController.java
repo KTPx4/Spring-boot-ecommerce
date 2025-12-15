@@ -32,7 +32,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    // @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Create new product", description = "Create a new product. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Product created successfully"),
@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     @GetMapping
-    // @PermitAll
+    @PermitAll
     @Operation(summary = "Get all products", description = "Retrieve all products. Public endpoint - No authentication required.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Products retrieved successfully")
@@ -62,7 +62,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    // @PermitAll
+    @PermitAll
     @Operation(summary = "Get product by ID", description = "Retrieve a product by its ID. Public endpoint - No authentication required.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Product found"),
@@ -76,7 +76,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    // @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Update product", description = "Update an existing product. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Product updated successfully"),
@@ -95,7 +95,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    // @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Delete product", description = "Delete a product by ID. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Product deleted successfully"),

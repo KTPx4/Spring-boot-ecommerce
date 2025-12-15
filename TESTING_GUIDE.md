@@ -245,7 +245,7 @@ curl -X GET http://localhost:8080/api/demo/admin \
 - **Nguyên nhân**: User không có quyền truy cập endpoint
 - **Giải pháp**:
   1. Check role của user trong DB
-  2. Check annotation `// @PreAuthorize` của endpoint
+  2. Check annotation `@PreAuthorize` của endpoint
 
 ## Logs
 

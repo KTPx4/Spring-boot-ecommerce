@@ -1,0 +1,48 @@
+package ecommerce.infra.client.mapper;
+
+import ecommerce.core.domain.product.ProductCoreRequest;
+import ecommerce.core.domain.product.ProductCoreResponse;
+import ecommerce.infra.client.entity.Brand;
+import ecommerce.infra.client.entity.Category;
+import ecommerce.infra.client.entity.Product;
+
+public class ProductInfraMapper {
+    public static Product toEntity(ProductCoreRequest productCoreRequest, Brand brand, Category category) {
+
+
+        Product product = new Product();
+        product.setName(productCoreRequest.getName());
+        product.setDescription(productCoreRequest.getDescription());
+        product.setPrice(productCoreRequest.getPrice());
+        product.setSku(productCoreRequest.getSku());
+        product.setSlug(productCoreRequest.getSlug());
+        product.setImage_url(productCoreRequest.getImageUrl());
+        product.setShort_desc(productCoreRequest.getShortDesc());
+
+        product.setCategory(category);
+        product.setBrand(brand);
+        return product;
+    }
+
+    public static ProductCoreResponse toProductCoreResponse(Product product) {
+        ProductCoreResponse productCoreResponse = new ProductCoreResponse();
+        productCoreResponse.setId(product.getId());
+        productCoreResponse.setName(product.getName());
+        productCoreResponse.setDescription(product.getDescription());
+        productCoreResponse.setPrice(product.getPrice());
+        productCoreResponse.setSku(product.getSku());
+        productCoreResponse.setSlug(product.getSlug());
+        productCoreResponse.setImage_url(product.getImage_url());
+        productCoreResponse.setShort_desc(product.getShort_desc());
+        productCoreResponse.setBrand_id(product.getBrand().getId());
+        productCoreResponse.setCategory_id(product.getCategory().getId());
+        return productCoreResponse;
+    }
+
+    public static Product toUpdateEntity(Long id, ProductCoreRequest request, Brand brand, Category category)
+    {
+        Product product = toEntity(request, brand, category);
+        product.setId(id);
+        return product;
+    }
+}

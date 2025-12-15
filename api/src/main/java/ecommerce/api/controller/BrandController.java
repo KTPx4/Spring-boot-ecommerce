@@ -30,7 +30,7 @@ public class BrandController {
     private final BrandService brandService;
 
     @PostMapping
-    // @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Create new brand", description = "Create a new brand. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Brand created successfully"),
@@ -47,7 +47,7 @@ public class BrandController {
     }
 
     @GetMapping
-    // @PermitAll
+    @PermitAll
     @Operation(summary = "Get all brands", description = "Retrieve all brands. Public endpoint - No authentication required.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Brands retrieved successfully")
@@ -59,7 +59,7 @@ public class BrandController {
     }
 
     @GetMapping("/{id}")
-    // @PermitAll
+    @PermitAll
     @Operation(summary = "Get brand by ID", description = "Retrieve a brand by its ID. Public endpoint - No authentication required.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Brand found"),
@@ -73,7 +73,7 @@ public class BrandController {
     }
 
     @PutMapping("/{id}")
-    // @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Update brand", description = "Update an existing brand. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Brand updated successfully"),
@@ -92,7 +92,7 @@ public class BrandController {
     }
 
     @DeleteMapping("/{id}")
-    // @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Delete brand", description = "Delete a brand by ID. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Brand deleted successfully"),
