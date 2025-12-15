@@ -21,7 +21,7 @@ import java.util.Map;
 public class DemoController {
 
     @GetMapping("/user")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    // @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @Operation(summary = "User endpoint", description = "Accessible by USER and ADMIN roles")
     public ResponseEntity<Map<String, Object>> userEndpoint() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -35,7 +35,7 @@ public class DemoController {
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Admin endpoint", description = "Accessible by ADMIN role only")
     public ResponseEntity<Map<String, Object>> adminEndpoint() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

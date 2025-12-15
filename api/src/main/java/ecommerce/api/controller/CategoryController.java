@@ -30,7 +30,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    // @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Create new category", description = "Create a new category. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category created successfully"),
@@ -47,7 +47,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    @PermitAll
+    // @PermitAll
     @Operation(summary = "Get all categories", description = "Retrieve all categories. Public endpoint - No authentication required.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Categories retrieved successfully")
@@ -59,7 +59,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    @PermitAll
+    // @PermitAll
     @Operation(summary = "Get category by ID", description = "Retrieve a category by its ID. Public endpoint - No authentication required.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category found"),
@@ -73,7 +73,7 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    // @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Update category", description = "Update an existing category. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category updated successfully"),
@@ -92,7 +92,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    // @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Delete category", description = "Delete a category by ID. Requires ADMIN role.", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category deleted successfully"),
